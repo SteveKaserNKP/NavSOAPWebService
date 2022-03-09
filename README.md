@@ -12,7 +12,22 @@ print(sales_orders)
 
 ## Nav SOAP Web Service
 
-1. To use this class, you'll need to create a web service for a codeunit object in Navision.  The functions in the codeunit will need to be set with `Local=No` and `FunctionVisibility=External` in the properties of each function in order to be visibile from the web service.
+1. To use this class, you'll need to create a web service for a codeunit object in Navision.  The functions in the codeunit will need to be set with `Local=No` and `FunctionVisibility=External` in the properties of each function in order to be visibile from the web service. For this example, codeunit `50000` has been created with a function called `GetAllSalesOrders`.  The code creates a pipe-separated list of all the `Sales Header`'s `No.`s.
+
+>``` C/AL
+>[External] GetAllSalesOrders() rSalesOrders : Text
+>rSalesOrders := '';
+>lSH.RESET;
+>IF lSH.FINDSET THEN BEGIN
+>  REPEAT
+>    IF rSalesOrders = '' THEN BEGIN
+>      rSalesOrders := lSH."No.";
+>    END ELSE BEGIN
+>      rSalesOrders += '|' + lSH."No.";
+>    END;
+>  UNTIL lSH.NEXT = 0;
+>END;
+>```
 
 2. You'll also need to create a `.env` file that stores your credentials and, optionally, your web service URLs.
 
@@ -29,7 +44,7 @@ print(sales_orders)
 4. Install the `requirements.txt` file
 
 >``` bat
->py -m pip install -r requirements.txt
+>pip install -r requirements.txt
 >```
 
 5. Import the `NavSOAPWebService` class into a Python file

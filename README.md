@@ -28,23 +28,33 @@ print(sales_orders)
 
 4. Install the `requirements.txt` file
 
->`py -m pip install -r requirements.txt`
+>``` bat
+>py -m pip install -r requirements.txt
+>```
 
 5. Import the `NavSOAPWebService` class into a Python file
 
->`from NavSOAPWebService import NavSOAPWebService`
+>``` python
+>from NavSOAPWebService import NavSOAPWebService
+>```
 
 6. Import the `dotenv_values` function from the `dotenv` package
 
->`from dotenv import dotenv_values`
+>``` python
+>from dotenv import dotenv_values
+>```
 
 7. Read your .env file
 
->`config = dotenv_values('.env')`
+>``` python
+>config = dotenv_values('.env')
+>```
 
-8. Create a variable to your codeunit
+8. Connect to the web service
 
->`cu_50000 = NavSOAPWebService(config['URL_CU_50000'], config['USER'], config['PASS'])`
+>``` python
+>cu_50000 = NavSOAPWebService(config['URL_CU_50000'], config['USER'], config['PASS'])
+>```
 
 9. Call functions from your codeunit
 
